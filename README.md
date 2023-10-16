@@ -2,7 +2,7 @@
 
 Python code for training a hybrid empirical-physical network to represent passive microwave observations over ocean and sea ice areas. The unknowns, to be found by training, are the sea ice concentration, the physical properties of the sea ice and any overlying snow, and the microwave surface emissivity of the sea ice surface. These unknown state and modelling components are embedded in a network of known physical models.
 
-The learning approach is a hybrid of data ssimilation and machine learning that simultaneously trains an empirical model component and an empirical geophysical input state. The  empirical model component is a simple neural network and its input creates a latent space that defines the empirical geophysical state. It is proposed to call this an "empirical state" method.
+The learning approach is a hybrid of data assimilation and machine learning that simultaneously trains an empirical model component and an empirical geophysical input state. The  empirical model component is a simple neural network and its input creates a latent space that defines the empirical geophysical state. It is proposed to call this an "empirical state" method.
 
 The empirical sea ice emissivity model trained using this code can then be plugged into a weather forecasting system to add a sea ice concentration analysis to the atmospheric data assimilation system, and to enable assimilation of microwave data with strong surface sensitivities over sea ice for the first time.
 
