@@ -4,7 +4,11 @@ Python code for training a hybrid empirical-physical network to represent passiv
 
 The learning approach is a hybrid of data assimilation and machine learning that simultaneously trains an empirical model component and an empirical geophysical input state. The  empirical model component is a simple neural network and its input creates a latent space that defines the empirical geophysical state. It is proposed to call this an "empirical state" method.
 
-The empirical sea ice emissivity model trained using this code can then be plugged into a weather forecasting system to add a sea ice concentration analysis to the atmospheric data assimilation system, and to enable assimilation of microwave data with strong surface sensitivities over sea ice for the first time.
+The empirical sea ice emissivity model trained using this code can then be plugged into a weather forecasting system to add a sea ice concentration analysis to the atmospheric data assimilation system, and to enable assimilation of microwave data with strong surface sensitivities over sea ice for the first time
+
+The code used in the draft manuscript is archived at https://doi.org/10.5281/zenodo.10013542
+
+The data used in the draft manuscript is archived at https://doi.org/10.5281/zenodo.10009498
 
 Citation:
 
