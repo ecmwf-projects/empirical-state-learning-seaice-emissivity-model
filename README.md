@@ -24,6 +24,8 @@ tensorflow
 xarray
 numpy
 
+For the draft manuscript, the Python code was run on Python 3.8.8-01 including Tensorflow and Keras 2.8.0 on the ECMWF ATOS supercomputer CPU nodes. 
+
 ## License
 
 Copyright 2023 European Centre for Medium-Range Weather Forecasts (ECMWF)
