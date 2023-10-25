@@ -73,7 +73,7 @@ class SeaiceEmisNN(tf.keras.layers.Layer):
 
 def seaice_initializer(shape, dtype=None):
     """
-    Initializer for the sea ice fraction maps
+    Initializer for the sea ice concentration maps
     """
     ifs_seaice = xr.open_dataset(ifs_seaice_file)
     if hasattr(ifs_seaice,'SEAICE'):
@@ -82,7 +82,14 @@ def seaice_initializer(shape, dtype=None):
         seaice_map = tf.convert_to_tensor(ifs_seaice.seaice, dtype=dtype)
     ifs_seaice.close()
     if tf.rank(seaice_map) == 2:
-        return seaice_map
+        map_shape = seaice_map.shape
+        if map_shape == shape:
+            return seaice_map
+        elif map_shape[1] < shape[1] and map_shape[0] == shape[0]:
+            # Add any required padding when sea ice fields are being lagged
+            return tf.concat([tf.repeat(seaice_map[:,0:1],shape[1] - map_shape[1],1),seaice_map],1)
+        else:
+            raise ValueError("Incorrect shape of sea ice concentration map in model initializer")
     else: 
         return tf.repeat(tf.reshape(seaice_map,(shape[0],1)),shape[1],1)
 
@@ -93,6 +100,7 @@ def tsfc_initializer(shape, dtype=None):
     """
     ifs_tsfc = xr.open_dataset(ifs_tsfc_file)
     tsfc_map = tf.convert_to_tensor(ifs_tsfc.TSFC, dtype=dtype)
+    ifs_tsfc.close()
     return tsfc_map
 
 

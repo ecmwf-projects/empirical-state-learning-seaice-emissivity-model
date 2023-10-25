@@ -145,19 +145,19 @@ class SeaiceModel:
             coords={"grid":grid,"step":step,"prop":prop},name=('properties'))
         da3.to_netcdf(outpath+'properties_'+filename_append)
   
-    def load(self, fappend, outpath):
+    def load(self, filename_append, outpath):
         """
         Initialise the network trainable weights - to allow Keras training to be broken into 
         sequential calls. Note that seaice fields are loaded through the layer initialiser, not 
         through this routine
         """
         properties = xr.open_dataset(outpath+'properties_'+filename_append+'.nc')  
-        seaice_model.ice_prop_layer.set_weights([properties.properties])
+        self.ice_prop_layer.set_weights([properties.properties])
 
         models = xr.open_dataset(outpath+'models_'+filename_append+'.nc')  
-        seaice_model.seaice_emis_layer.set_weights([models.ice_coefs,models.ice_emis])
-        seaice_model.ocean_emis_layer.set_weights([models.ocean_emis_bias])
-        seaice_model.bias_layer.set_weights([models.tb_bias[:,0],models.tb_bias[:,1]])
+        self.seaice_emis_layer.set_weights([models.ice_coefs,models.ice_emis])
+        self.ocean_emis_layer.set_weights([models.ocean_emis_bias])
+        self.bias_layer.set_weights([models.tb_bias[:,0],models.tb_bias[:,1]])
 
 def monthly_training_data(filename, nsteps_per_day=1):
     """
