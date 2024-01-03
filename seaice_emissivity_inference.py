@@ -86,9 +86,9 @@ dataset = xr.Dataset(coords={'step':properties.step, 'grid':properties.grid,
 dataset['lon'] = (['grid'],tsfc.LON.data)
 dataset['lat'] = (['grid'],tsfc.LAT.data)
 dataset['time_start'] = (['step'],
-  np.arange(np.datetime64('2020-05-31T21:00'), np.datetime64('2021-05-31T21:00'), np.timedelta64(24, 'h')))
+  np.arange(np.datetime64('2020-06-30T21:00'), np.datetime64('2021-06-30T21:00'), np.timedelta64(24, 'h')))
 dataset['time_end']   = (['step'],
-  np.arange(np.datetime64('2020-06-01T21:00'), np.datetime64('2021-06-01T21:00'), np.timedelta64(24, 'h')))
+  np.arange(np.datetime64('2020-07-01T21:00'), np.datetime64('2021-07-01T21:00'), np.timedelta64(24, 'h')))
 dataset['channel_name'] = ('channel',['10v','10h','19v','19h','24v','24h','37v','37h','89v','89h'])
 dataset['sea_ice_concentration'] = seaice.seaice.transpose('step','grid')
 dataset['tsfc_norm'] = (['step','grid'],x0[:,0].reshape([nstep,ngrid]).astype(np.float32))
